@@ -1,0 +1,37 @@
+name: Build and Push Docker Image to GHCR
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Next.js app
+      run: npm run build
+
+    - name: Log in to GitHub Container Registry
+      run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u TopazKang --password-stdin
+
+    - name: Build Docker image
+      run: docker build -t ghcr.io/TopazKang/your-app-name:latest .
+
+    - name: Push Docker image to GHCR
+      run: docker push ghcr.io/TopazKang/your-app-name:latest
