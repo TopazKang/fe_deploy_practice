@@ -33,7 +33,7 @@ jobs:
       run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u TopazKang --password-stdin
 
     - name: Build Docker image
-      run: docker build -t ghcr.io/TopazKang/your-app-name:latest .
+      run: docker build -t fe_deploy_prac:latest .
 
     - name: Push Docker image to GHCR
-      run: docker push ghcr.io/TopazKang/your-app-name:latest
+      run: docker push fe_deploy_prac:latest
