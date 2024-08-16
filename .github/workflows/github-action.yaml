@@ -50,5 +50,5 @@ jobs:
         key: ${{ secrets.ARK_DEPLOY }}
         port: 22
         script: |
-          cd /deploy/conf
+          cd deploy/conf
           docker-compose up -d front
