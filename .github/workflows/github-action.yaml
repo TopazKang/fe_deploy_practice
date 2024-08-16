@@ -50,5 +50,6 @@ jobs:
         key: ${{ secrets.ARK_DEPLOY }}
         port: 22
         script: |
+          echo "${{ secrets.GHCR_TOKEN }}" | sudo docker login ghcr.io -u ${{ secrets.GIT_USER }} --password-stdin
           cd deploy/conf
           docker-compose up -d front
