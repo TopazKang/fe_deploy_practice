@@ -41,3 +41,14 @@ jobs:
 
     - name: Push Docker image to GHCR
       run: docker push ghcr.io/topazkang/fe-deploy-prac:latest
+
+    - name: SSH and Deploy Frontend
+      uses: appleboy/ssh-action@v0.1.8
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.ARK_DEPLOY }}
+        port: 22
+        script: |
+          cd /deploy/conf
+          docker-compose up -d front
