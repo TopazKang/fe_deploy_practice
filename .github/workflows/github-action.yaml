@@ -37,7 +37,7 @@ jobs:
         password: ${{ secrets.GHCR_TOKEN }}
 
     - name: Build Docker image
-      run: docker build -t ghcr.io/fe_deploy_prac:latest .
+      run: docker build -t ghcr.io/TopazKang/fe_deploy_prac:latest .
 
     - name: Push Docker image to GHCR
-      run: docker push ghcr.io/fe_deploy_prac:latest
+      run: docker push ghcr.io/TopazKang/fe_deploy_prac:latest
