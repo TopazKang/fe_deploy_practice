@@ -30,7 +30,7 @@ jobs:
       run: npm run build
 
     - name: Log in to GitHub Container Registry
-      run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u TopazKang --password-stdin
+      run: echo ${{ secrets.GHCR_TOKEN }} | docker login ghcr.io -u TopazKang --password-stdin
 
     - name: Build Docker image
       run: docker build -t fe_deploy_prac:latest .
